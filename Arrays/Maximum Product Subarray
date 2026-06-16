@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int maxProduct(vector<int> &arr) {
+        // code here
+        //max/min product ending at current index
+        long long maxProd=arr[0];
+        long long minProd=arr[0];
+        
+        //overall maximum product
+        long long ans=arr[0];
+        
+        for(int i=1; i<arr.size(); i++){
+            long long x=arr[i];
+            
+            //negative flips max and min
+            if(x<0) swap(maxProd, minProd);
+            
+            //Start new subarray pr extend previous
+            maxProd=max(x, maxProd*x);
+            minProd=min(x, minProd*x);
+            
+            ans=max(ans, maxProd);
+        }
+        return (int)ans;
+    }
+};
