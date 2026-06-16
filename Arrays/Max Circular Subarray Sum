@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int maxCircularSum(vector<int> &arr) {
+        // code here
+        int n=arr.size();
+        int currMax=arr[0], MaxN=arr[0];
+        int currMin=arr[0], MinN=arr[0];
+        int total=arr[0];
+        
+        for(int i=1; i<n; i++){
+            currMax=max(arr[i], currMax+arr[i]);
+            MaxN=max(MaxN, currMax);
+            
+            currMin=min(arr[i], currMin+arr[i]);
+            MinN=min(MinN, currMin);
+            total+=arr[i];
+        }
+        if(MaxN < 0) return MaxN;
+        
+        int maxCircular=total-MinN;
+        
+        return max(MaxN, maxCircular);
+    }
+};
